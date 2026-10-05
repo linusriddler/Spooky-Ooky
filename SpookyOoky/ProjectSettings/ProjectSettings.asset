@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 00000000000000000000000000000000
+  productGUID: 98286eb61c3631746ae9a4db27290b9b
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -927,7 +927,7 @@ PlayerSettings:
   cloudProjectId: 1b4ed31a-fc3b-4941-9273-a9b3447b0316
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
+  projectName: SpookyOoky
   organizationId: linusriddler
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
