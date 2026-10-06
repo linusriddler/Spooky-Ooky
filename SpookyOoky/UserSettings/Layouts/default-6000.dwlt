@@ -140,7 +140,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1555
+    width: 1553
     height: 933
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
@@ -166,7 +166,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1555
+    width: 1553
     height: 763
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
@@ -216,10 +216,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 203
     y: 0
-    width: 1352
+    width: 1350
     height: 763
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -244,7 +244,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 763
-    width: 1555
+    width: 1553
     height: 170
   m_MinSize: {x: 231, y: 276}
   m_MaxSize: {x: 10001, y: 10026}
@@ -269,9 +269,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1555
+    x: 1553
     y: 0
-    width: 365
+    width: 367
     height: 933
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
@@ -569,7 +569,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 203
     y: 79
-    width: 1350
+    width: 1348
     height: 737
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -987,9 +987,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 2.5961368, y: 0.8928347, z: -0.01617596}
+    m_Target: {x: 64.71074, y: 9.838447, z: 86.050514}
     speed: 2
-    m_Value: {x: 2.5961368, y: 0.8928347, z: -0.01617596}
+    m_Value: {x: 64.71074, y: 9.838447, z: 86.050514}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1035,13 +1035,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.23052715, y: -0.07871852, z: 0.018713363, w: 0.9696998}
+    m_Target: {x: 0.0327167, y: -0.9662745, z: 0.15885769, w: 0.20055567}
     speed: 2
-    m_Value: {x: 0.23052633, y: -0.07871824, z: 0.018713295, w: 0.96969634}
+    m_Value: {x: 0.032474887, y: -0.9664703, z: 0.15888949, w: 0.19908462}
   m_Size:
-    m_Target: 10.92025
+    m_Target: 4.2204795
     speed: 2
-    m_Value: 10.92025
+    m_Value: 4.2204795
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1115,12 +1115,26 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 452}
       m_SelectedIDs: []
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1324
+      - m_Data: -64692
+      - m_Data: -39708
+      - m_Data: -36504
+      - m_Data: -33662
+      - m_Data: -16948
+      - m_Data: -13830
+      - m_Data: -5598
+      - m_Data: -2982
+      - m_Data: -1292
+      - m_Data: 56146
+      - m_Data: 56888
+      - m_Data: 56892
+      - m_Data: 57020
+      - m_Data: 57264
+      - m_Data: 57272
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1327,7 +1341,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 842
-    width: 1554
+    width: 1552
     height: 144
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1353,7 +1367,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Main Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1363,7 +1377,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 53
   m_LastFolders:
-  - Assets
+  - Assets/Main Prefabs
   m_LastFoldersGridSize: 53
   m_LastProjectPath: C:\Users\02LINUS.RIDDLE\Linus Riddle\Unity\Repositories\Spooky
     Ooky\SpookyOoky
@@ -1373,15 +1387,23 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_Data: 47410
+    - m_Data: 53272
     m_LastClickedID:
-      m_Data: 47410
+      m_Data: 53272
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 47410
-    - m_Data: 47702
-    - m_Data: 47756
-    - m_Data: 47758
+    - m_Data: 47448
+    - m_Data: 47734
+    - m_Data: 47742
+    - m_Data: 47806
+    - m_Data: 47810
+    - m_Data: 47814
+    - m_Data: 47818
+    - m_Data: 47824
+    - m_Data: 52938
+    - m_Data: 52940
+    - m_Data: 54416
+    - m_Data: 54418
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1416,7 +1438,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 47410
+    - m_Data: 47448
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1543,9 +1565,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1555
+    x: 1553
     y: 79
-    width: 364
+    width: 366
     height: 907
   m_SerializedDataModeController:
     m_DataMode: 0
