@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 131795283}
   - component: {fileID: 131795282}
   - component: {fileID: 131795281}
+  - component: {fileID: 131795285}
   m_Layer: 0
   m_Name: Freaking Cube
   m_TagString: Untagged
