@@ -12,6 +12,7 @@ namespace AZE.AdvancedFirstPerson
         [SerializeField] private InputActionReference sprintAction;
         [SerializeField] private InputActionReference crouchAction;
         [SerializeField] private InputActionReference dodgeAction;
+        [SerializeField] private InputActionReference fireballAction;
 
         private float maxDoubleTapTime = 0.2f;
 
@@ -22,6 +23,7 @@ namespace AZE.AdvancedFirstPerson
         public bool CrouchTriggered { get; private set; }
         public bool DodgeTriggered { get; private set; }
         public Vector2 DodgeDirection { get; private set; }
+        public bool FireballTriggered { get; private set; }
 
 
         private int _dodgeTapCount = 0;
@@ -36,6 +38,7 @@ namespace AZE.AdvancedFirstPerson
             sprintAction.action.Enable();
             crouchAction.action.Enable();
             dodgeAction.action.Enable();
+            fireballAction.action.Enable();
         }
 
         private void OnDisable()
@@ -46,6 +49,7 @@ namespace AZE.AdvancedFirstPerson
             sprintAction.action.Disable(); 
             crouchAction.action.Disable(); 
             dodgeAction.action.Disable();
+            fireballAction.action.Disable();
         }
 
         private void Update()
@@ -61,6 +65,8 @@ namespace AZE.AdvancedFirstPerson
 
             // Press Tab to dodge
              DodgeTriggered = dodgeAction.action.WasPressedThisFrame();
+
+            FireballTriggered = fireballAction.action.WasPressedThisFrame();
         }
 
         public InputDevice GetLookDevice => lookAction.action.activeControl?.device;

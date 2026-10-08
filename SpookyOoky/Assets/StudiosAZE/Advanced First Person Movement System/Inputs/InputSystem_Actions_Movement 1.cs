@@ -123,7 +123,7 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
@@ -141,7 +141,7 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -181,6 +181,15 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fireball"",
+                    ""type"": ""Button"",
+                    ""id"": ""21f5777e-a316-4e1b-b55b-8f9d5c292d7d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -599,6 +608,17 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""431d5c2b-9eb2-42ff-83c3-1e586c1457de"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Fireball"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1196,6 +1216,7 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+        m_Player_Fireball = m_Player.FindAction("Fireball", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1299,6 +1320,7 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Dodge;
+    private readonly InputAction m_Player_Fireball;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1350,6 +1372,10 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
         /// Provides access to the underlying input action "Player/Dodge".
         /// </summary>
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Fireball".
+        /// </summary>
+        public InputAction @Fireball => m_Wrapper.m_Player_Fireball;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1406,6 +1432,9 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
+            @Fireball.started += instance.OnFireball;
+            @Fireball.performed += instance.OnFireball;
+            @Fireball.canceled += instance.OnFireball;
         }
 
         /// <summary>
@@ -1447,6 +1476,9 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
+            @Fireball.started -= instance.OnFireball;
+            @Fireball.performed -= instance.OnFireball;
+            @Fireball.canceled -= instance.OnFireball;
         }
 
         /// <summary>
@@ -1817,6 +1849,13 @@ public partial class @InputSystem_Actions_Movement1: IInputActionCollection2, ID
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDodge(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Fireball" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFireball(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
