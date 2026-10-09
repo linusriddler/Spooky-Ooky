@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 835665191895861815}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.022, y: 1.045, z: 0.092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 6102909387164874503}
   - component: {fileID: 8285314421161520006}
   - component: {fileID: 6211790025207480339}
+  - component: {fileID: 5370090564907310915}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -237,6 +238,7 @@ MonoBehaviour:
   sprintAction: {fileID: 0}
   crouchAction: {fileID: 0}
   dodgeAction: {fileID: 0}
+  fireballAction: {fileID: 0}
 --- !u!114 &8285314421161520006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +271,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterPushInteraction
   pushPower: 6
   weightBasedPush: 2
+--- !u!114 &5370090564907310915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071872175565817854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a103136038ef1a45a2594d2a7690fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireballAbility
+  fireballPrefab: {fileID: 7502049301865970214, guid: b2cb91c0e8b1b82449121573d15c6489, type: 3}
+  firePoint: {fileID: 7578543243671155190}
+  FireballTriggered: 1
+  fireballSpeed: 20
+  playerCamera: {fileID: 5098812103130497394}
 --- !u!1 &7698924282518238648
 GameObject:
   m_ObjectHideFlags: 0
