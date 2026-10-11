@@ -6,7 +6,7 @@ public class Fireball : MonoBehaviour
     public float lifetime = 5f;
     public GameObject impactEffect;
     public float impactEffectLifetime = 3f;
-
+    public float damage = 10f;
     private bool hasHit = false;
 
     void Start()
@@ -39,6 +39,13 @@ public class Fireball : MonoBehaviour
             Destroy(explosion, impactEffectLifetime);
         }
 
+        EnemyHealth enemyHealth =
+    collision.collider.GetComponentInParent<EnemyHealth>();
+
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(damage);
+        }
 
         // Destroy the fireball when it hits something
         Destroy(gameObject);
