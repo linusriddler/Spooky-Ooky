@@ -75,6 +75,9 @@ public class PlayerHealth : MonoBehaviour
         // Reset the healing countdown every time damage is taken.
         timeSinceLastDamage = 0f;
 
+        // Show the health bar whenever the player takes damage.
+        SetHealthUIVisible(true);
+
         UpdateHealthUI();
 
         if (currentHealth <= 0f)
@@ -83,11 +86,24 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+
     private void UpdateHealthUI()
     {
-        SetHealthUIVisible(true);
-        UpdateHealthUI();
+        // Update the green health bar.
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+
+        // Update the health number.
+        if (healthText != null)
+        {
+            healthText.text =
+                $"{Mathf.CeilToInt(currentHealth)} / {Mathf.CeilToInt(maxHealth)}";
+        }
     }
+
 
     private void Die()
     {
@@ -105,10 +121,16 @@ public class PlayerHealth : MonoBehaviour
 
     private void SetHealthUIVisible(bool visible)
     {
-        if (healthSlider != null)
+        if (healthSlider != null &&
+            healthSlider.gameObject.activeSelf != visible)
+        {
             healthSlider.gameObject.SetActive(visible);
+        }
 
-        if (healthText != null)
+        if (healthText != null &&
+            healthText.gameObject.activeSelf != visible)
+        {
             healthText.gameObject.SetActive(visible);
+        }
     }
 }
