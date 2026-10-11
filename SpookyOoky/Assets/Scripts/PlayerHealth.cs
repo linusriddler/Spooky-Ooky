@@ -21,6 +21,12 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public TextMeshProUGUI healthText;
 
+    [Header("Damage Feedback")]
+    public DamageFlash damageFlash;
+
+    [Header("Game Over")]
+    public GameOverUI gameOverUI;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -65,26 +71,37 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Called by the enemy's melee attack.
+
     public void TakeDamage(float damage)
     {
         if (isDead || damage <= 0f)
             return;
 
+        // Reduce player health.
         currentHealth = Mathf.Max(0f, currentHealth - damage);
 
-        // Reset the healing countdown every time damage is taken.
+        // Reset the regeneration timer.
         timeSinceLastDamage = 0f;
 
-        // Show the health bar whenever the player takes damage.
+        // Display the health bar.
         SetHealthUIVisible(true);
 
+        // Update the health values.
         UpdateHealthUI();
 
+        // Play the red damage flash.
+        if (damageFlash != null)
+        {
+            damageFlash.Flash();
+        }
+
+        // Check if the player has died.
         if (currentHealth <= 0f)
         {
             Die();
         }
     }
+
 
 
     private void UpdateHealthUI()
@@ -105,19 +122,47 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
+
     private void Die()
     {
+        if (isDead)
+            return;
+
         isDead = true;
 
-        // Stop the player's movement.
+        // Disable player movement.
         PlayerMovementStateMachine movement =
             GetComponent<PlayerMovementStateMachine>();
 
         if (movement != null)
+        {
             movement.enabled = false;
+        }
+
+        // Disable player movement input.
+        PlayerInputHandler inputHandler =
+            GetComponent<PlayerInputHandler>();
+
+        if (inputHandler != null)
+        {
+            inputHandler.enabled = false;
+        }
+
+        // Hide damage flash so it doesn't cover the menu.
+        if (damageFlash != null)
+        {
+            damageFlash.gameObject.SetActive(false);
+        }
+
+        // Display the Game Over screen.
+        if (gameOverUI != null)
+        {
+            gameOverUI.ShowGameOver();
+        }
 
         Debug.Log("Player died!");
     }
+
 
     private void SetHealthUIVisible(bool visible)
     {
