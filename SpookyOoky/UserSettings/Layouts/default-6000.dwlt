@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 70
+  controlID: 53
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 71
+  controlID: 54
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 72
+  controlID: 55
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -1001,9 +1001,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 84.81931, y: 6.603554, z: 84.74863}
+    m_Target: {x: 76.810974, y: 27.731255, z: 125.59675}
     speed: 2
-    m_Value: {x: 84.81931, y: 6.603554, z: 84.74863}
+    m_Value: {x: 76.810974, y: 27.731255, z: 125.59675}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1049,13 +1049,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.08418487, y: -0.8601974, z: 0.15129292, w: 0.479851}
+    m_Target: {x: 0.0020036479, y: -0.94063336, z: 0.33963203, w: 0.0059840106}
     speed: 2
-    m_Value: {x: 0.08345797, y: -0.860349, z: 0.14998937, w: 0.47993517}
+    m_Value: {x: 0.0020034667, y: -0.94054836, z: 0.33960134, w: 0.00598347}
   m_Size:
-    m_Target: 1.0747759
+    m_Target: 0.17344451
     speed: 2
-    m_Value: 12.124355
+    m_Value: 0.17344451
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1134,44 +1134,8 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -124430
-      - m_Data: -120816
-      - m_Data: -113808
-      - m_Data: -113752
-      - m_Data: -113490
-      - m_Data: -112206
-      - m_Data: -108606
-      - m_Data: -108550
-      - m_Data: -107996
-      - m_Data: -100724
-      - m_Data: -100668
-      - m_Data: -100642
-      - m_Data: -93522
-      - m_Data: -81866
-      - m_Data: -81850
-      - m_Data: -81794
-      - m_Data: -81064
-      - m_Data: -77652
-      - m_Data: -76194
-      - m_Data: -74054
-      - m_Data: -69766
-      - m_Data: -67470
-      - m_Data: -67414
-      - m_Data: -65924
-      - m_Data: -57122
-      - m_Data: -57106
-      - m_Data: -57062
-      - m_Data: -57042
-      - m_Data: -47432
-      - m_Data: -24364
-      - m_Data: -19286
       - m_Data: -1336
-      - m_Data: 48166
-      - m_Data: 91562
-      - m_Data: 91972
-      - m_Data: 92014
-      - m_Data: 92134
-      - m_Data: 92162
+      - m_Data: 49546
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: Basic Grunt Variant
@@ -1183,7 +1147,7 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: -125546
+          m_Data: -1426
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -1339,11 +1303,30 @@ MonoBehaviour:
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
   m_ViewTransforms:
-    m_KeySerializationHelper: []
-    m_ValueSerializationHelper: []
+    m_KeySerializationHelper:
+    - {fileID: 1273345309931866147, guid: cbe8034c14a86554784e51df0c49c007, type: 2}
+    m_ValueSerializationHelper:
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 0}
-  m_BreadCrumbs: []
+  m_AnimatorController: {fileID: 9100000, guid: cbe8034c14a86554784e51df0c49c007, type: 2}
+  m_BreadCrumbs:
+  - m_Target: {fileID: 1273345309931866147, guid: cbe8034c14a86554784e51df0c49c007, type: 2}
+    m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
   blendTreeGraph: {fileID: 0}
@@ -1404,7 +1387,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Main Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1414,21 +1397,21 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 53
   m_LastFolders:
-  - Assets/Main Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: 53
   m_LastProjectPath: D:\Repositories\Spooky Ooky\Spooky-Ooky\SpookyOoky
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 60}
+    scrollPos: {x: 0, y: 120}
     m_SelectedIDs:
-    - m_Data: 51534
+    - m_Data: 52894
     m_LastClickedID:
-      m_Data: 51534
+      m_Data: 52894
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 51310
+    - m_Data: 52522
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1463,7 +1446,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 51310
+    - m_Data: 52522
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

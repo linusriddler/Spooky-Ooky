@@ -1,17 +1,20 @@
-using UnityEngine;
 
+using UnityEngine;
+using UnityEngine.AI;
+
+[RequireComponent(typeof(NavMeshAgent))]
 public class BasicGruntAI : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 2f;
-    public float stopDistance = 1.4f;
-    public float turnSpeed = 8f;
+    public float stoppingDistance = 1.4f;
 
     private Transform player;
+    private NavMeshAgent agent;
 
     private void Start()
     {
-        // Find the player when the enemy spawns.
+        // Find the player.
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
@@ -19,49 +22,38 @@ public class BasicGruntAI : MonoBehaviour
         {
             player = playerObject.transform;
         }
-        else
-        {
-            Debug.LogWarning(
-                "Basic Grunt could not find the Player! " +
-                "Make sure your player has the Player tag."
-            );
-        }
+
+        // Get the navigation component.
+        agent = GetComponent<NavMeshAgent>();
+
+        // Set movement speed and stopping distance.
+        agent.speed = moveSpeed;
+        agent.stoppingDistance = stoppingDistance;
     }
 
     private void Update()
     {
-        // Do nothing if we couldn't find the player.
+        // Make sure the player exists.
         if (player == null)
             return;
 
-        // Find the direction from the enemy to the player.
-        Vector3 direction =
-            player.position - transform.position;
-
-        // Keep movement horizontal so the enemy's
-        // idle floating animation can continue normally.
-        direction.y = 0f;
-
-        float distance = direction.magnitude;
-
-        // Stop moving when close enough to attack.
-        if (distance <= stopDistance)
+        // Only navigate if the enemy is on a NavMesh.
+        if (!agent.isOnNavMesh)
             return;
 
-        direction.Normalize();
+        // Tell Unity to find a path toward the player.
+        agent.SetDestination(player.position);
+    }
 
-        // Move toward the player.
-        transform.position +=
-            direction * moveSpeed * Time.deltaTime;
-
-        // Gradually turn toward the player.
-        Quaternion targetRotation =
-            Quaternion.LookRotation(direction);
-
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            turnSpeed * Time.deltaTime
-        );
+    private void OnDisable()
+    {
+        // Stop moving when this AI is disabled,
+        // including when the Grunt dies.
+        if (agent != null &&
+            agent.isActiveAndEnabled &&
+            agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+        }
     }
 }
