@@ -33,6 +33,20 @@ public class AnimatedSlashAbility : MonoBehaviour
     private static readonly int Attack2Hash =
         Animator.StringToHash("Attack 2");
 
+    [Header("Spectral Trail")]
+    public TrailRenderer spectralTrail;
+    public float trailStartDelay = 0.07f;
+    public float trailDuration = 0.18f;
+
+
+    private void Start()
+    {
+        if (spectralTrail != null)
+        {
+            spectralTrail.emitting = false;
+            spectralTrail.Clear();
+        }
+    }
     private void Update()
     {
         if (Keyboard.current == null)
@@ -65,6 +79,8 @@ public class AnimatedSlashAbility : MonoBehaviour
         float hitTime = doingAttack1 ? attack1HitTime : attack2HitTime;
 
         meleeAnimator.CrossFadeInFixedTime(attackHash, 0.05f);
+
+        StartCoroutine(PlaySlashTrail());
 
         yield return new WaitForSeconds(hitTime);
 
@@ -124,7 +140,7 @@ public class AnimatedSlashAbility : MonoBehaviour
 
             hitEnemies.Add(enemy);
 
-            ApplyKnockback(enemy);
+            
             enemy.TakeDamage(damage);
         }
     }
@@ -185,5 +201,24 @@ public class AnimatedSlashAbility : MonoBehaviour
         Gizmos.color = Color.cyan;
         Vector3 hitCenter = attackOrigin.position + attackOrigin.forward * 1.5f;
         Gizmos.DrawWireSphere(hitCenter, hitRadius);
+    }
+
+    private IEnumerator PlaySlashTrail()
+    {
+        if (spectralTrail == null)
+            yield break;
+
+        // Wait for the actual sword swing to begin.
+        yield return new WaitForSeconds(trailStartDelay);
+
+        // Start drawing the magical trail.
+        spectralTrail.Clear();
+        spectralTrail.emitting = true;
+
+        // Keep the trail active during the cut.
+        yield return new WaitForSeconds(trailDuration);
+
+        // Stop creating new trail segments.
+        spectralTrail.emitting = false;
     }
 }
