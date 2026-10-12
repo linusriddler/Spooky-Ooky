@@ -8,11 +8,11 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Death Effect")]
     public GameObject deathEffectPrefab;
-    public float deathEffectLifetime = 2f;
+    public float deathEffectLifetime = 1f;
 
     [Header("Death Timing")]
-    public float deathEffectDelay = 1f;
-    public float bodyDisappearDelay = 0.3f;
+    public float deathEffectDelay = 0f;
+    public float bodyDisappearDelay = 1f;
 
     private bool isDead;
 
@@ -58,6 +58,32 @@ public class EnemyHealth : MonoBehaviour
 
         if (melee != null)
             melee.enabled = false;
+        
+        // Stop Wizard attacks after death.
+        WizardRangedAttack wizard =
+            GetComponent<WizardRangedAttack>();
+
+        if (wizard != null)
+        {
+            wizard.enabled = false;
+        }
+
+        // Stop the Wizard's retreat behavior when defeated.
+        WizardRetreatAI retreatAI =
+            GetComponent<WizardRetreatAI>();
+
+        if (retreatAI != null)
+        {
+            retreatAI.enabled = false;
+        }
+
+        // Stop the Imp's combat behavior when defeated.
+        ImpCombatAI impAI = GetComponent<ImpCombatAI>();
+
+        if (impAI != null)
+        {
+            impAI.enabled = false;
+        }
 
         // Prevent the dead enemy from blocking the player.
         foreach (Collider col in GetComponentsInChildren<Collider>())
@@ -65,6 +91,8 @@ public class EnemyHealth : MonoBehaviour
 
         // Keep the skeleton visible while the death sequence plays.
         StartCoroutine(DeathSequence());
+
+        
     }
 
     private IEnumerator DeathSequence()
