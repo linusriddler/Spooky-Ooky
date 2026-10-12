@@ -15833,6 +15833,7 @@ GameObject:
   - component: {fileID: 7569431628640748953}
   - component: {fileID: -9102161217515024150}
   - component: {fileID: 6384600293333172759}
+  - component: {fileID: -2444579289614390550}
   m_Layer: 0
   m_Name: Wizard(1)
   m_TagString: Untagged
@@ -15975,11 +15976,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099429a983b298645b962b724a3065e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WizardRetreatAI
+  approachDistance: 12
+  stopApproachingDistance: 10
+  approachSpeed: 2.5
   retreatDistance: 6
   safeDistance: 8
   retreatSpeed: 3
   retreatStep: 4
   pathUpdateInterval: 0.5
+--- !u!114 &-2444579289614390550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499686141692037371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d8b94a220948844a74aa92a7a7df35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatusEffects
 --- !u!1 &7509847513103269358
 GameObject:
   m_ObjectHideFlags: 0

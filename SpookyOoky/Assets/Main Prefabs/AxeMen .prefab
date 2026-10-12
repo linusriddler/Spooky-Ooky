@@ -212,6 +212,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ea6973fa37405b42a839b9e9b8c60ad, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7286391752415712716}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ea6973fa37405b42a839b9e9b8c60ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5043114740276503701}
   m_SourcePrefab: {fileID: 100100000, guid: 1ea6973fa37405b42a839b9e9b8c60ad, type: 3}
 --- !u!1 &3818905920586693552 stripped
 GameObject:
@@ -336,6 +339,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicGruntAI
   moveSpeed: 3.5
   stoppingDistance: 1.4
+--- !u!114 &5043114740276503701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3818905920586693552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d8b94a220948844a74aa92a7a7df35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatusEffects
 --- !u!4 &4590480970612007178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ea6973fa37405b42a839b9e9b8c60ad, type: 3}

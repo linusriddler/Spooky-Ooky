@@ -11,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
     public GameObject gruntPrefab;
     public GameObject axeManPrefab;
     public GameObject wizardPrefab;
+    public GameObject impPrefab;
     public Transform[] spawnPoints;
 
     [Header("Wave Settings")]
@@ -33,6 +34,10 @@ public class WaveSpawner : MonoBehaviour
     public int wizardStartingWave = 4;
     public int wizardsAddedPerWave = 1;
 
+    [Header("Imp Settings")]
+    public int impStartingWave = 5;
+    public int impsAddedPerWave = 1;
+
 
 
     [Header("Current Wave")]
@@ -53,8 +58,9 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         if (gruntPrefab == null ||
-            axeManPrefab == null ||
-            wizardPrefab == null)
+        axeManPrefab == null ||
+        wizardPrefab == null ||
+        impPrefab == null)
         {
             Debug.LogError("WaveSpawner is missing an enemy prefab!");
             return;
@@ -93,17 +99,30 @@ public class WaveSpawner : MonoBehaviour
     }
 
 
+
     private IEnumerator WaveRoutine()
     {
         while (true)
         {
-            // Calculate total enemies in this wave.
+            // Total number of enemies assigned to the wave.
             int totalEnemies = startingEnemyCount +
                 (currentWave - 1) * enemiesAddedPerWave;
 
-            enemiesWaitingToSpawn = totalEnemies;   
+            enemiesWaitingToSpawn = totalEnemies;
 
-            // Calculate how many Wizards to spawn.
+            // Calculate Imp count.
+            int impCount = 0;
+
+            if (currentWave >= impStartingWave)
+            {
+                impCount =
+                    (currentWave - impStartingWave + 1)
+                    * impsAddedPerWave;
+            }
+
+            impCount = Mathf.Clamp(impCount, 0, totalEnemies);
+
+            // Calculate Wizard count.
             int wizardCount = 0;
 
             if (currentWave >= wizardStartingWave)
@@ -114,10 +133,10 @@ public class WaveSpawner : MonoBehaviour
             }
 
             wizardCount = Mathf.Clamp(
-                wizardCount, 0, totalEnemies
+                wizardCount, 0, totalEnemies - impCount
             );
 
-            // Calculate how many Axe Men to spawn.
+            // Calculate Axe Man count.
             int axeMenCount = 0;
 
             if (currentWave >= axeManStartingWave)
@@ -127,52 +146,50 @@ public class WaveSpawner : MonoBehaviour
                     * axeMenAddedPerWave;
             }
 
-            // Leave enough room for Wizards.
             axeMenCount = Mathf.Clamp(
                 axeMenCount,
                 0,
-                totalEnemies - wizardCount
+                totalEnemies - impCount - wizardCount
             );
 
-            // Everyone else is a Grunt.
+            // Fill the remaining slots with Grunts.
             int gruntCount =
-                totalEnemies - axeMenCount - wizardCount;
+                totalEnemies - impCount - wizardCount - axeMenCount;
 
             Debug.Log(
                 "Wave " + currentWave +
                 ": " + gruntCount + " Grunts, " +
                 axeMenCount + " Axe Men, " +
-                wizardCount + " Wizards"
+                wizardCount + " Wizards, " +
+                impCount + " Imps"
             );
 
-            // Show the wave announcement.
+            // Display the wave announcement.
             StartCoroutine(ShowWaveAnnouncement());
 
-            // Track which enemies still need to spawn.
+            // Keep track of enemies still waiting to spawn.
             int gruntsLeft = gruntCount;
             int axeMenLeft = axeMenCount;
             int wizardsLeft = wizardCount;
+            int impsLeft = impCount;
 
-            // Spawn all enemies in randomized order.
             for (int i = 0; i < totalEnemies; i++)
             {
-
                 // Wait until there's room for another enemy.
                 while (true)
                 {
-                    // Remove defeated enemies from our tracking list.
                     aliveEnemies.RemoveAll(enemy => enemy == null);
 
-                    // Continue spawning when we're below the limit.
                     if (aliveEnemies.Count < Mathf.Max(1, maxAliveEnemies))
                         break;
 
-                    // Wait one frame before checking again.
                     yield return null;
                 }
 
+                // Randomly select an enemy type using
+                // the remaining counts.
                 int remaining =
-                    gruntsLeft + axeMenLeft + wizardsLeft;
+                    gruntsLeft + axeMenLeft + wizardsLeft + impsLeft;
 
                 int randomChoice = Random.Range(0, remaining);
 
@@ -188,12 +205,19 @@ public class WaveSpawner : MonoBehaviour
                     chosenPrefab = axeManPrefab;
                     axeMenLeft--;
                 }
-                else
+                else if (randomChoice <
+                    gruntsLeft + axeMenLeft + wizardsLeft)
                 {
                     chosenPrefab = wizardPrefab;
                     wizardsLeft--;
                 }
+                else
+                {
+                    chosenPrefab = impPrefab;
+                    impsLeft--;
+                }
 
+                // Spawn the chosen enemy.
                 if (!SpawnEnemy(chosenPrefab))
                 {
                     yield break;
@@ -205,7 +229,7 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
 
-            // Wait until every enemy is defeated.
+            // Wait for all remaining enemies to be defeated.
             while (aliveEnemies.Count > 0)
             {
                 aliveEnemies.RemoveAll(enemy => enemy == null);
@@ -214,12 +238,13 @@ public class WaveSpawner : MonoBehaviour
 
             Debug.Log("Wave " + currentWave + " completed!");
 
-            // Break before starting the next wave.
+            // Give the player a break.
             yield return new WaitForSeconds(timeBetweenWaves);
 
             currentWave++;
         }
     }
+
 
     private bool SpawnEnemy(GameObject enemyPrefab)
     {
