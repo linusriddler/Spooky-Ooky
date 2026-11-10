@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cbe8034c14a86554784e51df0c49c007
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 394156
+  packageName: Spooky Ghost Lite
+  packageVersion: 1.0
+  assetPath: Assets/Spooky Ghost Lite/Animation/Spooky Ghost.controller
+  uploadId: 955744

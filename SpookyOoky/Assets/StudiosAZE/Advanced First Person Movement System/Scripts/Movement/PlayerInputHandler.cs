@@ -12,6 +12,7 @@ namespace AZE.AdvancedFirstPerson
         [SerializeField] private InputActionReference sprintAction;
         [SerializeField] private InputActionReference crouchAction;
         [SerializeField] private InputActionReference dodgeAction;
+        [SerializeField] private InputActionReference fireballAction;
 
         private float maxDoubleTapTime = 0.2f;
 
@@ -22,6 +23,7 @@ namespace AZE.AdvancedFirstPerson
         public bool CrouchTriggered { get; private set; }
         public bool DodgeTriggered { get; private set; }
         public Vector2 DodgeDirection { get; private set; }
+        public bool FireballTriggered { get; private set; }
 
 
         private int _dodgeTapCount = 0;
@@ -36,15 +38,18 @@ namespace AZE.AdvancedFirstPerson
             sprintAction.action.Enable();
             crouchAction.action.Enable();
             dodgeAction.action.Enable();
-
-            dodgeAction.action.started += HandleDodgeInput;
-            dodgeAction.action.performed += HandleDodgeInput;
+            fireballAction.action.Enable();
         }
 
         private void OnDisable()
         {
-            dodgeAction.action.started -= HandleDodgeInput;
-            dodgeAction.action.performed -= HandleDodgeInput;
+            moveAction.action.Disable(); 
+            lookAction.action.Disable(); 
+            jumpAction.action.Disable(); 
+            sprintAction.action.Disable(); 
+            crouchAction.action.Disable(); 
+            dodgeAction.action.Disable();
+            fireballAction.action.Disable();
         }
 
         private void Update()
@@ -57,34 +62,17 @@ namespace AZE.AdvancedFirstPerson
 
             if (crouchAction.action.WasPressedThisFrame())
                 CrouchTriggered = !CrouchTriggered;
+
+            // Press Tab to dodge
+             DodgeTriggered = dodgeAction.action.WasPressedThisFrame();
+
+            FireballTriggered = fireballAction.action.WasPressedThisFrame();
         }
 
         public InputDevice GetLookDevice => lookAction.action.activeControl?.device;
 
         public void UseDodge() => DodgeTriggered = false;
 
-        private void HandleDodgeInput(InputAction.CallbackContext context)
-        {
-            if (context.started)
-            {
-                float timeSinceLastTap = Time.time - _lastTapTime;
-                Vector2 currentInput = context.ReadValue<Vector2>();
-
-                if (_lastDodgeInput == currentInput && timeSinceLastTap <= maxDoubleTapTime)
-                    _dodgeTapCount++;
-                else
-                    _dodgeTapCount = 1;
-
-                _lastTapTime = Time.time;
-                _lastDodgeInput = currentInput;
-                DodgeDirection = currentInput;
-            }
-
-            if (context.performed && _dodgeTapCount >= 2)
-            {
-                _dodgeTapCount = 0;
-                DodgeTriggered = true;
-            }
-        }
+       
     }
 }

@@ -7,8 +7,8 @@ namespace AZE.AdvancedFirstPerson
     public class PlayerMovementStateMachine : MonoBehaviour
     {
         [Header("Speed Settings")]
-        [Range(1f, 10f)] public float WalkSpeed = 4.5f;
-        [Range(5f, 20f)] public float RunSpeed = 7f;
+        [Range(5f, 20f)] public float WalkSpeed = 5f;
+        [Range(5f, 20f)] public float RunSpeed = 5f;
         [Range(1f, 5f)] public float CrouchSpeed = 2.5f;
         [Range(0f, 30f)] public float MovementSmoothing = 15f;
 

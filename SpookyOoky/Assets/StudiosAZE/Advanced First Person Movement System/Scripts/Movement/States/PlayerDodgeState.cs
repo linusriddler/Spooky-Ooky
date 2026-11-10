@@ -17,12 +17,25 @@ namespace AZE.AdvancedFirstPerson
             ctx.LastDodgeTime = Time.time;
             ctx.TargetHeight = ctx.GetStandingHeight();
 
+            // Get the direction the player is currently holding
+            Vector2 moveInput = ctx.InputHandler.MoveInput;
+
             Vector3 localDir = Vector3.zero;
 
-            if (ctx.InputHandler.DodgeDirection.y < 0) localDir += Vector3.back;
-            if (ctx.InputHandler.DodgeDirection.x < 0) localDir += Vector3.left;
-            if (ctx.InputHandler.DodgeDirection.x > 0) localDir += Vector3.right;
+            // S = backward
+            if (moveInput.y < -0.1f) localDir += Vector3.back;
 
+            // A = left
+            if (moveInput.x < -0.1f) localDir += Vector3.left;
+
+            // D = right
+            if (moveInput.x > 0.1f) localDir += Vector3.right;
+
+            // W = forward
+            if (moveInput.y > 0.1f) localDir += Vector3.forward;
+
+            // If no direction is being held, 
+            // dodge backward
             if (localDir == Vector3.zero)
             {
                 localDir = Vector3.back;
